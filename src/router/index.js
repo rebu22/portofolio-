@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../pages/HomePage.vue'
 import AboutPage from '../pages/AboutPage.vue'
+import BlogPage from '../pages/BlogPage.vue'
 import PortfolioPage from '../pages/PortfolioPage.vue'
 import ContactPage from '../pages/ContactPage.vue'
 import ProjectDetailPage from '../pages/ProjectDetailPage.vue'
@@ -17,6 +18,12 @@ const routes = [
     name: 'about',
     component: AboutPage,
     meta: { title: 'About — Dea Cinta Ramadani' },
+  },
+  {
+    path: '/blog',
+    name: 'blog',
+    component: BlogPage,
+    meta: { title: 'Blog — Dea Cinta Ramadani' },
   },
   {
     path: '/portfolio',

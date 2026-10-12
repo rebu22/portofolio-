@@ -1,56 +1,120 @@
 <template>
-  <div class="relative overflow-hidden">
-    <AmbientBackground />
+  <div class="dx-hero">
+    <img class="dx-portrait" :src="photoSrc" alt="Dea Cinta Ramadani, mahasiswi Informatika ITK" fetchpriority="high" />
 
-    <!-- LAYOUT 1 — HOME: headline kiri, foto tengah, panel kanan -->
-    <section class="relative mx-auto grid max-w-7xl gap-10 px-5 pt-12 pb-16 sm:px-8 lg:grid-cols-[1.15fr_0.9fr_0.85fr] lg:items-center lg:gap-8 lg:pt-16 lg:pb-24" aria-label="Beranda">
-      <HeroSection />
-
-      <div class="flex justify-center lg:justify-center">
-        <ProfileImage class="w-full max-w-xs sm:max-w-sm" />
-      </div>
-
-      <InfoPanel />
-
-      <!-- Tombol bulat panah ke halaman berikutnya -->
-      <div class="flex justify-center lg:col-span-3 lg:mt-2">
-        <RouterLink
-          to="/about"
-          class="group flex h-16 w-16 items-center justify-center rounded-full border border-violet-300/30 bg-violet-600/20 text-2xl text-white shadow-[0_0_36px_rgba(139,92,246,0.45)] transition hover:-translate-y-1 hover:bg-violet-600/35"
-          aria-label="Lanjut ke halaman About"
-          title="Lanjut ke About"
+    <section class="dx-intro" aria-labelledby="intro-title">
+      <div class="dx-rule" aria-hidden="true"></div>
+      <h1 id="intro-title">
+        Saya Dea,<br />
+        Mahasiswi Informatika
+      </h1>
+      <p>
+        Mahasiswi Informatika Institut Teknologi Kalimantan angkatan 2024 yang tertarik mengembangkan solusi
+        digital melalui pembelajaran, analisis sistem, dan implementasi proyek.
+      </p>
+      <RouterLink
+        to="/about"
+        class="dx-scroll"
+        aria-label="Selengkapnya tentang Dea"
+        title="Selengkapnya tentang Dea"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
         >
-          <span class="transition group-hover:translate-y-0.5" aria-hidden="true">↓</span>
-        </RouterLink>
-      </div>
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </RouterLink>
     </section>
 
-    <!-- Akses cepat antarhalaman -->
-    <section class="relative mx-auto max-w-7xl px-5 pb-20 sm:px-8" aria-label="Jelajahi halaman lain">
-      <div class="grid gap-4 sm:grid-cols-3">
-        <RouterLink
-          v-for="card in quickLinks"
-          :key="card.path"
-          :to="card.path"
-          class="glass-panel group rounded-3xl p-6 transition hover:-translate-y-1 hover:border-violet-300/40"
-        >
-          <p class="text-3xl" aria-hidden="true">{{ card.emoji }}</p>
-          <h2 class="font-display mt-3 text-lg font-bold text-white">{{ card.title }}</h2>
-          <p class="mt-1.5 text-sm leading-relaxed text-fog">{{ card.text }}</p>
-          <p class="mt-3 text-sm font-semibold text-lilac">
-            Buka halaman <span class="inline-block transition group-hover:translate-x-1" aria-hidden="true">→</span>
-          </p>
+    <aside class="dx-sidebar" aria-label="Ringkasan profil">
+      <section class="dx-section" aria-labelledby="dx-about">
+        <h2 id="dx-about">ABOUT ME</h2>
+        <p>
+          Mahasiswi Informatika ITK angkatan 2024 (NIM 11241025). Fokus pada pembelajaran, analisis sistem, dan
+          implementasi proyek digital.
+        </p>
+        <RouterLink to="/about" class="dx-text-link">
+          LEARN MORE
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
         </RouterLink>
-      </div>
-    </section>
+      </section>
+
+      <section class="dx-section" aria-labelledby="dx-work">
+        <h2 id="dx-work">MY WORK</h2>
+        <p>
+          Konsep dan latihan proyek yang didokumentasikan secara jujur: status konsep, latihan, atau ide — bukan
+          klaim aplikasi yang sudah selesai.
+        </p>
+        <RouterLink to="/portfolio" class="dx-text-link">
+          BROWSE PORTFOLIO
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </RouterLink>
+      </section>
+
+      <section class="dx-social" aria-labelledby="dx-follow">
+        <h2 id="dx-follow">FOLLOW ME</h2>
+        <SocialLinks @placeholder-click="notice = $event" />
+        <p class="dx-social-note" role="status" aria-live="polite">
+          <template v-if="notice">Akun {{ notice }} belum tersedia — segera hadir.</template>
+          <template v-else>Akun sosial akan ditautkan setelah informasi resmi tersedia.</template>
+        </p>
+      </section>
+    </aside>
+
+    <div class="dx-journal" aria-label="Jelajahi halaman lain">
+      <RouterLink v-for="card in quickLinks" :key="card.path" :to="card.path" class="dx-journal-card">
+        <p class="dx-journal-emoji" aria-hidden="true">{{ card.emoji }}</p>
+        <h2 class="dx-journal-title">{{ card.title }}</h2>
+        <p class="dx-journal-text">{{ card.text }}</p>
+        <p class="dx-journal-link">Buka halaman <span aria-hidden="true">→</span></p>
+      </RouterLink>
+    </div>
   </div>
 </template>
 
 <script setup>
-import AmbientBackground from '../components/AmbientBackground.vue'
-import HeroSection from '../components/HeroSection.vue'
-import ProfileImage from '../components/ProfileImage.vue'
-import InfoPanel from '../components/InfoPanel.vue'
+import { ref } from 'vue'
+import SocialLinks from '../components/SocialLinks.vue'
+import photoSrc from '../assets/photo-profil.png'
+
+const notice = ref('')
 
 const quickLinks = [
   {
@@ -60,16 +124,16 @@ const quickLinks = [
     text: 'Profil akademik, latar belakang, dan pendekatan belajar Dea.',
   },
   {
+    path: '/blog',
+    emoji: '📝',
+    title: 'Blog',
+    text: 'Jurnal belajar — akan diisi tulisan nyata, bukan artikel karangan.',
+  },
+  {
     path: '/portfolio',
     emoji: '🗂️',
     title: 'Portfolio',
     text: 'Daftar konsep dan latihan proyek yang didokumentasikan jujur.',
-  },
-  {
-    path: '/contact',
-    emoji: '✉️',
-    title: 'Contact',
-    text: 'Sapa Dea lewat formulir kontak dengan validasi langsung.',
   },
 ]
 </script>

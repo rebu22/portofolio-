@@ -1,10 +1,10 @@
 <template>
-  <footer class="relative border-t border-violet-300/10 bg-[#07040d]/90">
-    <div class="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-[1.4fr_1fr_1fr]">
+  <footer class="dx-footer">
+    <div class="dx-footer-grid">
       <div>
-        <p class="font-display text-lg font-bold text-white">Dea Cinta Ramadani</p>
-        <p class="mt-1 text-xs tracking-[0.2em] text-fog uppercase">Informatika · Institut Teknologi Kalimantan · 2024</p>
-        <p class="mt-4 max-w-sm text-sm leading-relaxed text-fog">
+        <p class="dx-footer-name">Dea Cinta Ramadani</p>
+        <p class="dx-footer-meta">Informatika · Institut Teknologi Kalimantan · 2024</p>
+        <p class="dx-footer-desc">
           Portofolio akademik untuk mendokumentasikan proses belajar, analisis sistem, dan implementasi proyek
           digital.
         </p>
@@ -15,10 +15,10 @@
       </div>
 
       <nav aria-label="Navigasi footer">
-        <p class="font-display text-sm font-bold tracking-[0.18em] text-lilac uppercase">Jelajahi</p>
-        <ul class="mt-4 flex flex-col gap-2.5 text-sm">
+        <p class="dx-footer-heading">Jelajahi</p>
+        <ul class="dx-footer-list">
           <li v-for="item in navItems" :key="item.path">
-            <RouterLink :to="item.path" class="text-fog transition hover:text-white">
+            <RouterLink :to="item.path">
               {{ item.label }}
             </RouterLink>
           </li>
@@ -26,8 +26,8 @@
       </nav>
 
       <div>
-        <p class="font-display text-sm font-bold tracking-[0.18em] text-lilac uppercase">Kontak</p>
-        <ul class="mt-4 flex flex-col gap-2.5 text-sm text-fog">
+        <p class="dx-footer-heading">Kontak</p>
+        <ul class="dx-footer-list">
           <li>NIM 11241025 — Informatika ITK</li>
           <li>
             <RouterLink to="/contact" class="font-semibold text-white transition hover:text-lilac">
@@ -37,12 +37,10 @@
         </ul>
       </div>
     </div>
-    <div class="border-t border-white/5">
-      <div
-        class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-5 text-xs text-fog sm:flex-row sm:px-8"
-      >
+    <div class="dx-footer-bottom">
+      <div class="dx-footer-bottom-inner">
         <p>© {{ year }} Dea Cinta Ramadani. Dibuat dengan Vue 3 + Tailwind CSS.</p>
-        <p>Dark purple premium · aksen violet</p>
+        <p>Developer-X layout · data Dea</p>
       </div>
     </div>
   </footer>
@@ -55,6 +53,7 @@ import SocialLinks from './SocialLinks.vue'
 const navItems = [
   { label: 'Home', path: '/' },
   { label: 'About', path: '/about' },
+  { label: 'Blog', path: '/blog' },
   { label: 'Portfolio', path: '/portfolio' },
   { label: 'Contact', path: '/contact' },
 ]
